@@ -2,17 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# URL do banco de dados SQLite
-SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"  # Usando SQLite para simplicidade
 
-# Criação do motor de banco de dados
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base para a criação de modelos
 Base = declarative_base()
 
-# Dependência para obter a sessão do banco de dados
+# Dependência para obter o banco de dados
 def get_db():
     db = SessionLocal()
     try:
